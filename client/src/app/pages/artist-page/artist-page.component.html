@@ -1,0 +1,47 @@
+<div *ngIf="artist" class="row">
+	<div class="col-6">
+		<!--TODO: populate with artist name-->
+		<h1>{{artistName}}</h1>
+		<!--TODO: populate with artist image URL-->
+		<img id="artistImg" [src]="imageURL">
+		<p>
+			<!--TODO: link to artist page on spotify, display artist name-->
+			<a class="btn btn-light" [href] ="artist.url" role="button" target="_blank">Open {{artistName}} on Spotify</a>
+		</p>
+	</div>
+	<div class="col-2">
+		<h3>Genres</h3>
+		<ul>
+			<!--TODO: loop over artist's genres and display them-->
+			<li *ngFor="let genre of artist.genres; let i = index; let first = first" >{{genre}}</li>
+		</ul>
+		<p>
+		</p>
+	</div>
+	<div class="col-4">
+		<!--TODO: display artist name-->
+		<h3>{{artistName}}'s Top Tracks</h3>
+		<!--TODO: display the track list for the album-->
+		<app-track-list [tracks]='topTracks' [hideArtist]="false" [hideAlbum]="false"></app-track-list>
+<!-- 
+		@Input() tracks:TrackData[];
+		@Input() hideArtist:boolean = false;
+		@Input() hideAlbum:boolean = false; -->
+	</div>
+</div>
+
+<div *ngIf="artist" class="row">
+	<div class="col-6">
+		<!--TODO: display artist name-->
+		<h3>{{artistName}}'s Albums</h3>
+		<app-carousel [resources]='albums' [carouselId]='albums[0].category'></app-carousel>
+		<!--TODO: Display a carousel component for the artist's albums. Bind carousel's resources and give it a static carouselId.-->
+	</div>
+	<div class="col-6">
+		<h3>Similar Artists</h3>
+		<app-carousel [resources]='relatedArtists' [carouselId]='relatedArtists[0].category'></app-carousel>
+		<!-- <app-carousel [resources]='relatedArtists' [carouselId]="relatedArtists.id"></app-carousel> -->
+		<!--TODO: Display a carousel component for similar artists. Bind carousel's resources and give it a static carouselId.-->
+	</div>
+
+</div>
